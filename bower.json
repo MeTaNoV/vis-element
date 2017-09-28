@@ -1,0 +1,17 @@
+{
+  "name": "vis-element",
+  "description": "A component wrapper around the Vis.js library",
+  "main": "vis-element.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "vis": "almende/vis#^4.20.0"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "web-component-tester": "Polymer/web-component-tester#^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  },
+  "resolutions": {
+    "polymer": "^2.0.0"
+  }
+}

@@ -1,0 +1,52 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<link rel="import" href="vis-import.html">
+<link rel="import" href="vis-styles.html">
+
+<dom-module id="vis-element">
+  <template>
+    <style include="vis-styles">
+       :host {
+        display: block;
+      }
+    </style>
+
+    <div id="container"></div>
+  </template>
+
+  <script>
+    /**
+     * `vis-element`
+     * A component wrapper around the Vis.js library
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class VisElement extends Polymer.Element {
+      static get is() { return 'vis-element'; }
+      static get properties() {
+        return {
+          items: {
+            type: Array
+          },
+          options: {
+            type: Object
+          }
+        };
+      }
+
+      ready() {
+        super.ready()
+
+        // Create a DataSet (allows two way data-binding)
+        var visDataSet = new vis.DataSet(this.items);
+
+        // Create a Timeline
+        var timeline = new vis.Timeline(this.$.container, visDataSet, this.options);
+      }
+    }
+
+    window.customElements.define(VisElement.is, VisElement);
+  </script>
+</dom-module>
