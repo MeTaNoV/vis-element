@@ -43,7 +43,7 @@
         var visDataSet = new vis.DataSet(this.items);
 
         // Create a Timeline
-        var timeline = new vis.Timeline(this.$.container, visDataSet, this.options);
+        var timeline = new vis.Timeline(this.$.container, visDataSet, this.options || {});
       }
     }
 
