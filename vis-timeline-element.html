@@ -1,0 +1,55 @@
+<link rel="import" href="vis-element.html">
+
+<dom-module id="vis-timeline-element">
+    <script>
+        /**
+        * `vis-timeline-element`
+        * The Timeline Element of the Vis.js library.
+        *
+        * @customElement
+        * @polymer
+        * @demo demo/timeline.html
+        */
+        class VisTimelineElement extends VisElement {
+            static get is() { return 'vis-timeline-element'; }
+            static get properties() {
+                return {
+                    items: {
+                        type: Array,
+                        observer: '_itemsChanged'
+                    },
+                    dataset: {
+                        type: Object,
+                        notify: true
+                    },
+                    groups: {
+                        type: Object
+                    },
+                    _timeline: {
+                        type: Object
+                    }
+                };
+            }
+
+            ready() {
+                super.ready()
+
+                // Create a DataSet (allows two way data-binding)
+                this.dataset = new vis.DataSet(this.items)
+
+                // Create a Timeline
+                this._timeline = new vis.Timeline(this.$.container, this.dataset, this.groups, this.options || {})
+            }
+
+            _itemsChanged(newItems, oldItems) {
+                this.dataset = new vis.DataSet(newItems)
+                if (this._timeline) {
+                    this._timeline.setItems(this.dataset)
+                    this._timeline.fit()
+                }
+            }
+        }
+
+        window.customElements.define(VisTimelineElement.is, VisTimelineElement);
+    </script>
+</dom-module>

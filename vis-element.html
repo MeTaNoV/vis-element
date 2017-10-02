@@ -6,8 +6,11 @@
 <dom-module id="vis-element">
   <template>
     <style include="vis-styles">
-       :host {
+      :host {
         display: block;
+      }
+      .vis-item {
+        @apply --vis-item
       }
     </style>
 
@@ -27,23 +30,14 @@
       static get is() { return 'vis-element'; }
       static get properties() {
         return {
-          items: {
-            type: Array
-          },
           options: {
             type: Object
-          }
+          },
         };
       }
 
       ready() {
         super.ready()
-
-        // Create a DataSet (allows two way data-binding)
-        var visDataSet = new vis.DataSet(this.items);
-
-        // Create a Timeline
-        var timeline = new vis.Timeline(this.$.container, visDataSet, this.options || {});
       }
     }
 

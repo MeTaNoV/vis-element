@@ -8,19 +8,61 @@
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../vis-element.html">
+    <link rel="import" href="../vis-timeline-element.html">
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
+        vis-timeline-element {
+          --vis-item: {
+            background-color: greenyellow;
+            border-color: green;
+          };
+        }
       </style>
     </custom-style>
   </head>
   <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic vis-element demo</h3>
-          <vis-element></vis-element>
-    </div>
+    <dom-bind>
+      <template>
+        <div class="vertical-section-container centered">
+          <h3>Timeline Vis Element demo</h3>
+          <vis-timeline-element
+            items='[
+              {"id": 1, "content": "item 1", "start": "2013-04-20"},
+              {"id": 2, "content": "item 2", "start": "2013-04-14"},
+              {"id": 3, "content": "item 3", "start": "2013-04-18"},
+              {"id": 4, "content": "item 4", "start": "2013-04-16", "end": "2013-04-19"},
+              {"id": 5, "content": "item 5", "start": "2013-04-25"},
+              {"id": 6, "content": "item 6", "start": "2013-04-27"}
+            ]'
+            options="{{options1}}"></vis-timeline-element>
+          <vis-timeline-element items='{{items1}}' options="{{options1}}"></vis-timeline-element>
+
+          </div>
+      </template>
+    </dom-bind>
+    <script>
+      document.addEventListener('WebComponentsReady', function() {
+        var autoBind = document.querySelector('dom-bind');
+
+        // Example 1
+        console.log("autoBind ready! 1")
+        autoBind.items1 = [
+          {id: 1, content: 'item 1', start: '2017-09-20'},
+          {id: 2, content: 'item 2', start: '2017-09-14'},
+          {id: 3, content: 'item 3', start: '2017-09-18'},
+          {id: 4, content: 'item 4', start: '2017-09-16', end: '2017-09-19'},
+          {id: 5, content: 'item 5', start: '2017-09-25'},
+          {id: 6, content: 'item 6', start: '2017-09-27'}
+        ]
+        console.log("autoBind ready! 2")
+        autoBind.options1 = {}
+        console.log("autoBind ready! 3  ")
+      })
+    </script>
   </body>
 </html>
