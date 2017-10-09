@@ -1,7 +1,34 @@
 {
   "name": "vis-element",
-  "description": "A component wrapper around the Vis.js library",
+  "version": "1.0.0",
+  "description": "[Polymer 2.x] A component wrapper around the Vis.js library",
+  "authors": [
+    "Pascal Gula aka MeTaNoV <pascal.gula@gmail.com>"
+  ],
+  "keywords": [
+    "web-component",
+    "web-components",
+    "web",
+    "component",
+    "components",
+    "custom",
+    "element",
+    "polymer",
+    "vis",
+    "timeline"
+  ],
   "main": "vis-element.html",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MeTaNoV/vis-element.git"
+  },
+  "license": "MIT",
+  "homepage": "https://geoloeg.github.io/vis-element/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
     "vis": "almende/vis#^4.20.0"
