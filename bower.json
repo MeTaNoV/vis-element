@@ -1,6 +1,6 @@
 {
   "name": "vis-element",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "[Polymer 2.x] A component wrapper around the Vis.js library",
   "authors": [
     "Pascal Gula aka MeTaNoV <pascal.gula@gmail.com>"

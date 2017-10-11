@@ -23,7 +23,8 @@
                         notify: true
                     },
                     groups: {
-                        type: Object
+                        type: Array,
+                        observer: '_groupsChanged'
                     },
                     timeline: {
                         type: Object,
@@ -34,19 +35,28 @@
 
             ready() {
                 super.ready()
-
                 // Create a DataSet (allows two way data-binding)
                 this.dataset = new vis.DataSet(this.items)
-
                 // Create a Timeline
                 this.timeline = new vis.Timeline(this.$.container, this.dataset, this.groups, this.options || {})
+            }
+
+
+            connectedCallback() {
+                super.connectedCallback()
             }
 
             _itemsChanged(newItems, oldItems) {
                 this.dataset = new vis.DataSet(newItems)
                 if (this.timeline) {
                     this.timeline.setItems(this.dataset)
-                    this.timeline.fit()
+                    this.timeline.redraw()
+                }
+            }
+
+            _groupsChanged(newGroups, oldGroups) {
+                if (this.timeline) {
+                    this.timeline.setGroups(newGroups)
                     this.timeline.redraw()
                 }
             }

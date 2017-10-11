@@ -39,8 +39,8 @@
               {"id": 5, "content": "item 5", "start": "2013-04-25"},
               {"id": 6, "content": "item 6", "start": "2013-04-27"}
             ]'
-            options="{{options1}}"></vis-timeline-element>
-          <vis-timeline-element items='{{items1}}' options="{{options1}}"></vis-timeline-element>
+            options="{{options}}"></vis-timeline-element>
+          <vis-timeline-element items='{{items}}' groups='{{groups}}' options="{{options}}"></vis-timeline-element>
         </div>
       </template>
     </dom-bind>
@@ -50,16 +50,20 @@
 
         // Example 1
         console.log("autoBind ready! 1")
-        autoBind.items1 = [
-          {id: 1, content: 'item 1', start: '2017-09-20'},
-          {id: 2, content: 'item 2', start: '2017-09-14'},
-          {id: 3, content: 'item 3', start: '2017-09-18'},
-          {id: 4, content: 'item 4', start: '2017-09-16', end: '2017-09-19'},
-          {id: 5, content: 'item 5', start: '2017-09-25'},
-          {id: 6, content: 'item 6', start: '2017-09-27'}
+        autoBind.groups = [
+          {id: 1, content: 'group 1'},
+          {id: 2, content: 'group 2'},
+        ]
+        autoBind.items = [
+          {id: 1, content: 'item 1', start: '2017-09-20', group: 2},
+          {id: 2, content: 'item 2', start: '2017-09-14', group: 2},
+          {id: 3, content: 'item 3', start: '2017-09-18', group: 2},
+          {id: 4, content: 'item 4', start: '2017-09-16', group: 1, end: '2017-09-19'},
+          {id: 5, content: 'item 5', start: '2017-09-25', group: 1},
+          {id: 6, content: 'item 6', start: '2017-09-27', group: 1}
         ]
         console.log("autoBind ready! 2")
-        autoBind.options1 = {}
+        autoBind.options = {}
         console.log("autoBind ready! 3  ")
       })
     </script>
