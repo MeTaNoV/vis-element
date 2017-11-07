@@ -26,11 +26,12 @@
     </custom-style>
   </head>
   <body>
-    <dom-bind>
-      <template>
+    <!-- <dom-bind>
+      <template> -->
         <div class="vertical-section-container centered">
-          <h3>Timeline Vis Element demo</h3>
-          <vis-timeline-element
+          <h2>Timeline Vis Element demo</h2>
+          <h3>Timeline with only on("select")</h3>
+          <vis-timeline-element id="t1"
             items='[
               {"id": 1, "content": "item 1", "start": "2013-04-20"},
               {"id": 2, "content": "item 2", "start": "2013-04-14"},
@@ -39,32 +40,36 @@
               {"id": 5, "content": "item 5", "start": "2013-04-25"},
               {"id": 6, "content": "item 6", "start": "2013-04-27"}
             ]'
-            options="{{options}}"></vis-timeline-element>
-          <vis-timeline-element items='{{items}}' groups='{{groups}}' options="{{options}}"></vis-timeline-element>
+            options="{}"></vis-timeline-element>
+            <h3>Timeline with only on("click") executing setSelection() and  on("select")</h3>
+            <vis-timeline-element id="t2"
+            items='[
+              {"id": 1, "content": "item 1", "start": "2013-04-20"},
+              {"id": 2, "content": "item 2", "start": "2013-04-14"},
+              {"id": 3, "content": "item 3", "start": "2013-04-18"},
+              {"id": 4, "content": "item 4", "start": "2013-04-16", "end": "2013-04-19"},
+              {"id": 5, "content": "item 5", "start": "2013-04-25"},
+              {"id": 6, "content": "item 6", "start": "2013-04-27"}
+            ]'
+            options="{}"></vis-timeline-element>
         </div>
-      </template>
-    </dom-bind>
+      <!-- </template>
+    </dom-bind> -->
     <script>
       document.addEventListener('WebComponentsReady', function() {
-        var autoBind = document.querySelector('dom-bind');
+        let t1 = document.querySelector('#t1');
+        let t2 = document.querySelector('#t2');
 
-        // Example 1
-        console.log("autoBind ready! 1")
-        autoBind.groups = [
-          {id: 1, content: 'group 1'},
-          {id: 2, content: 'group 2'},
-        ]
-        autoBind.items = [
-          {id: 1, content: 'item 1', start: '2017-09-20', group: 2},
-          {id: 2, content: 'item 2', start: '2017-09-14', group: 2},
-          {id: 3, content: 'item 3', start: '2017-09-18', group: 2},
-          {id: 4, content: 'item 4', start: '2017-09-16', group: 1, end: '2017-09-19'},
-          {id: 5, content: 'item 5', start: '2017-09-25', group: 1},
-          {id: 6, content: 'item 6', start: '2017-09-27', group: 1}
-        ]
-        console.log("autoBind ready! 2")
-        autoBind.options = {}
-        console.log("autoBind ready! 3  ")
+        t1.timeline.on("select", function(e) {
+          console.log("t1: select was triggered!")
+        })
+        t2.timeline.on("click", function(e) {
+          console.log("Received click: " + JSON.stringify(e))
+          t2.timeline.setSelection(e.item)
+        })
+        t2.timeline.on("select", function(e) {
+          console.log("t2: select was triggered!")
+        })
       })
     </script>
   </body>
